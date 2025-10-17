@@ -8,7 +8,6 @@
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
-    "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
@@ -16,6 +15,7 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.27.0",
+    "@strapi/plugin-seo": "^2.0.8",
     "@strapi/plugin-users-permissions": "5.27.0",
     "@strapi/strapi": "5.27.0",
     "pg": "8.8.0",

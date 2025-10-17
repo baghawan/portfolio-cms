@@ -13,6 +13,14 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tools": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tool.tool"
     }
   }
 }
