@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "journal_categories",
+  "info": {
+    "singularName": "journal-category",
+    "pluralName": "journal-categories",
+    "displayName": "Journal Category"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

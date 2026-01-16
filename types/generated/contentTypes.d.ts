@@ -559,6 +559,72 @@ export interface ApiExpertiseExpertise extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiJournalCategoryJournalCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'journal_categories';
+  info: {
+    displayName: 'Journal Category';
+    pluralName: 'journal-categories';
+    singularName: 'journal-category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::journal-category.journal-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiJournalJournal extends Struct.CollectionTypeSchema {
+  collectionName: 'journals';
+  info: {
+    displayName: 'Journal';
+    pluralName: 'journals';
+    singularName: 'journal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    cover_picture: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    journal_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::journal-category.journal-category'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::journal.journal'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiToolTool extends Struct.CollectionTypeSchema {
   collectionName: 'tools';
   info: {
@@ -1136,6 +1202,8 @@ declare module '@strapi/strapi' {
       'api::collaboration.collaboration': ApiCollaborationCollaboration;
       'api::experience.experience': ApiExperienceExperience;
       'api::expertise.expertise': ApiExpertiseExpertise;
+      'api::journal-category.journal-category': ApiJournalCategoryJournalCategory;
+      'api::journal.journal': ApiJournalJournal;
       'api::tool.tool': ApiToolTool;
       'api::work.work': ApiWorkWork;
       'plugin::content-releases.release': PluginContentReleasesRelease;
