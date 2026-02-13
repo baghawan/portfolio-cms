@@ -559,6 +559,34 @@ export interface ApiExpertiseExpertise extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
+  collectionName: 'homepages';
+  info: {
+    displayName: 'Homepage';
+    pluralName: 'homepages';
+    singularName: 'homepage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::homepage.homepage'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    works: Schema.Attribute.Relation<'oneToMany', 'api::work.work'>;
+  };
+}
+
 export interface ApiJournalCategoryJournalCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'journal_categories';
@@ -1202,6 +1230,7 @@ declare module '@strapi/strapi' {
       'api::collaboration.collaboration': ApiCollaborationCollaboration;
       'api::experience.experience': ApiExperienceExperience;
       'api::expertise.expertise': ApiExpertiseExpertise;
+      'api::homepage.homepage': ApiHomepageHomepage;
       'api::journal-category.journal-category': ApiJournalCategoryJournalCategory;
       'api::journal.journal': ApiJournalJournal;
       'api::tool.tool': ApiToolTool;
